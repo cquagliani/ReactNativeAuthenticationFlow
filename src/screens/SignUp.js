@@ -5,12 +5,15 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpaci
 import { auth } from '../../firebase'
 
 const SignUp = () => {
+    const navigation = useNavigation();
+
     // Initialize state for the username and password
     const [email, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [seePassword, setSeePassword] = useState(true);
     const [confirmPassword, setConfirmPassword] = useState('');
-
-    const navigation = useNavigation();
+    const [seeConfirmPassword, setSeeConfirmPassword] = useState(true);
+    const [checkValidEmail, setCheckValidEmail] = useState(false);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -22,34 +25,81 @@ const SignUp = () => {
         return unsubscribe;
     }, [])
 
-    const navSignIn = () => {
-        navigation.navigate('Sign In');
-    }
+    const handleCheckEmail = (text) => {
+        let re = /\S+@\S+\.\S+/;
+        let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+        setUsername(text);
+        if (re.test(text) || regex.test(text)) {
+            setCheckValidEmail(false);
+        } else {
+            setCheckValidEmail(true);
+        }
+    };
+
+    const checkPasswordValidity = (value) => {
+        const isNonWhiteSpace = /^\S*$/;
+        
+        if (!isNonWhiteSpace.test(value)) {
+            return 'Password must not contain Whitespaces.';
+        }
+
+        const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+        if (!isContainsUppercase.test(value)) {
+            return 'Password must have at least one Uppercase Character.';
+        }
+
+        const isContainsLowercase = /^(?=.*[a-z]).*$/;
+        if (!isContainsLowercase.test(value)) {
+            return 'Password must have at least one Lowercase Character.';
+        }
+
+        const isContainsNumber = /^(?=.*[0-9]).*$/;
+        if (!isContainsNumber.test(value)) {
+            return 'Password must contain at least one Digit.';
+        }
+
+        const isValidLength = /^.{8,16}$/;
+        if (!isValidLength.test(value)) {
+            return 'Password must be 8-16 Characters Long.';
+        }
+
+        const isContainsSymbol =
+            /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+        if (!isContainsSymbol.test(value)) {
+            return 'Password must contain at least one Special Symbol.';
+        }
+
+        return null;
+    };
 
     // Function to handle creating a username and password
     const handleCreate = () => {
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
 
-                // Show a success message
-                alert('Success', 'Account created successfully');
-                console.log('Registered with ', user.email);
-            })
-            .catch(error => {
-                // Show an error message
-                alert(error.message);
-            });
+        if (password == confirmPassword) {
+            const checkPassword = checkPasswordValidity(password);
+
+            if (!checkPassword) {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(userCredentials => {
+                        const user = userCredentials.user;
+
+                        // Show a success message
+                        alert('Success', 'Account created successfully');
+                        console.log('Registered with ', user.email);
+                    })
+                    .catch(error => {
+                        // Show an error message
+                        alert(error.message);
+                    });
+            }
+        } else {
+            // alert('Passwords must match.');
+        }
     };
 
-    const handleCheckPasswords = (password, confirmPassword) => {
-        if (password === confirmPassword) {
-            handleCreate();
-        } else {
-            error => {
-                alert(error.message);
-            }
-        }
+    const navSignIn = () => {
+        navigation.navigate('Sign In');
     }
 
     return (
@@ -76,29 +126,35 @@ const SignUp = () => {
 
             {/* Email and Password buttons */}
             <View style={styles.inputContainer}>
-                <TextInput
-                    placeholder='Email'
-                    value={email}
-                    autoCapitalize='none'
-                    onChangeText={text => setUsername(text)}
-                    style={styles.input}
-                />
-                <TextInput
-                    placeholder='Password'
-                    value={password}
-                    autoCapitalize='none'
-                    onChangeText={text => setPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
-                <TextInput
-                    placeholder='Confirm Password'
-                    value={confirmPassword}
-                    autoCapitalize='none'
-                    onChangeText={text => setConfirmPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
+                <View>
+                    <TextInput
+                        placeholder='Email'
+                        value={email}
+                        autoCapitalize='none'
+                        onChangeText={text => handleCheckEmail(text)}
+                        style={styles.input}
+                    />
+                </View>
+                <View>
+                    <TextInput
+                        placeholder='Password'
+                        value={password}
+                        autoCapitalize='none'
+                        onChangeText={text => setPassword(text)}
+                        style={styles.input}
+                        secureTextEntry
+                    />
+                </View>
+                <View>
+                    <TextInput
+                        placeholder='Confirm Password'
+                        value={confirmPassword}
+                        autoCapitalize='none'
+                        onChangeText={text => setConfirmPassword(text)}
+                        style={styles.input}
+                        secureTextEntry
+                    />
+                </View>
             </View>
 
             {/* Sign Up button */}
@@ -194,5 +250,10 @@ const styles = StyleSheet.create({
     },
     subtext: {
         color: '#7F7F80',
+    },
+    textFailed: {
+        alignSelf: 'flex-start',
+        color: 'red',
+        fontSize: 12
     },
 })

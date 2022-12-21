@@ -13,10 +13,6 @@ const ForgotPassword = () => {
         navigation.navigate('Sign Up');
     }
 
-    const navSignIn = () => {
-        navigation.navigate('Sign In');
-    }
-    
     const changePassword = () => {
         firebase.auth().sendPasswordResetEmail(email)
             .then(() => {

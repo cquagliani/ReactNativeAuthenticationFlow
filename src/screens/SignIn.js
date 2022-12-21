@@ -69,21 +69,25 @@ const Login = () => {
 
             {/* Email and Password buttons */}
             <View style={styles.inputContainer}>
-                <TextInput
-                    placeholder='Email'
-                    value={email}
-                    autoCapitalize='none'
-                    onChangeText={text => setUsername(text)}
-                    style={styles.input}
-                />
-                <TextInput
-                    placeholder='Password'
-                    value={password}
-                    autoCapitalize='none'
-                    onChangeText={text => setPassword(text)}
-                    style={styles.input}
-                    secureTextEntry
-                />
+                <View>
+                    <TextInput
+                        placeholder='Email'
+                        value={email}
+                        autoCapitalize='none'
+                        onChangeText={text => setUsername(text)}
+                        style={styles.input}
+                    />
+                </View>
+                <View>
+                    <TextInput
+                        placeholder='Password'
+                        value={password}
+                        autoCapitalize='none'
+                        onChangeText={text => setPassword(text)}
+                        style={styles.input}
+                        secureTextEntry
+                    />
+                </View>
             </View>
 
             {/* Sign In buttons */}

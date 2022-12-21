@@ -5,7 +5,7 @@ import { auth } from '../../firebase'
 
 const Home = () => {
   const navigation = useNavigation();
-  
+
   const handleSignOut = () => {
     auth.signOut()
       .then(() => {
@@ -22,7 +22,7 @@ const Home = () => {
     <View style={styles.container}>
       <Text>Email: {auth.currentUser?.email}</Text>
       <TouchableOpacity
-      onPress={handleSignOut}
+        onPress={handleSignOut}
         style={styles.button}
       >
         <Text style={styles.buttonText}>Sign Out</Text>
