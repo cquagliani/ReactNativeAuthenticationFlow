@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         color: '#000000',
-        fontWeight: 700,
+        fontWeight: 'bold',
         fontSize: 32,
     },
     subtitle: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     },
     subtitleText: {
         color: '#7F7F80',
-        fontWeight: 700,
+        fontWeight: 'bold',
         fontSize: 16,
     },
     inputContainer: {
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: '700',
+        fontWeight: 'bold',
         fontSize: 16,
     },
     subtextContainer: {
