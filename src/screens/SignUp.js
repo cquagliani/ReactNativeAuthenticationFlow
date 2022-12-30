@@ -97,9 +97,9 @@ const SignUp = () => {
                         console.log('Registered with ', user.email);
 
                         // Clear fields on sign up screen
-                        setUsername({email: null});
-                        setPassword({password: null});
-                        setConfirmPassword({confirmPassword: null});
+                        setUsername({ email: null });
+                        setPassword({ password: null });
+                        setConfirmPassword({ confirmPassword: null });
                     })
                     .catch(error => {
                         // Show an error message
@@ -159,8 +159,8 @@ const SignUp = () => {
                     />
                     <TouchableOpacity
                         style={styles.wrapperIcon}
-                        onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
-                        <Image source={seePassword ? require('../assets/Eye.png'): require('../assets/HideEye.png')} style={styles.icon} />
+                        onPress={() => { password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword) }}>
+                        <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
                 <View>
@@ -174,15 +174,22 @@ const SignUp = () => {
                     />
                     <TouchableOpacity
                         style={styles.wrapperIcon}
-                        onPress={() => {confirmPassword == '' ? setSeePassword(seeConfirmPassword) : setSeeConfirmPassword(!seeConfirmPassword)}}>
+                        onPress={() => { confirmPassword == '' ? setSeePassword(seeConfirmPassword) : setSeeConfirmPassword(!seeConfirmPassword) }}>
                         <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
                     </TouchableOpacity>
+                </View>
+                <View style={styles.subtextContainer}>
+                    <Text style={styles.subtextDisclaimer}>By signing up, you agree to our
+                        <Text style={{ fontWeight: 'bold', color: '#5080BF' }}> Terms of Service </Text>
+                        and our
+                        <Text style={{ fontWeight: 'bold', color: '#5080BF' }}> Privacy Policy</Text>
+                    </Text>
                 </View>
             </View>
 
             {/* Sign Up button */}
             {email == '' || password == '' || confirmPassword == '' || checkValidEmail == true ? (
-                <DisabledButton text={"Sign Up"}/>
+                <DisabledButton text={"Sign Up"} />
             ) : (
                 <CustomButton onPress={handleCreate} text={"Sign Up"} />
             )}
@@ -259,6 +266,10 @@ const styles = StyleSheet.create({
     },
     subtext: {
         color: '#7F7F80',
+    },
+    subtextDisclaimer: {
+        color: '#7F7F80',
+        fontSize: 11,
     },
     textFailed: {
         alignSelf: 'flex-start',
