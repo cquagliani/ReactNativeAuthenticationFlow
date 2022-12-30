@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { auth } from '../../firebase'
+import CustomButton from '../components/CustomButton';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -21,12 +22,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Text>Email: {auth.currentUser?.email}</Text>
-      <TouchableOpacity
-        onPress={handleSignOut}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
+      <CustomButton onPress={handleSignOut} text={"Sign Out"} />
     </View>
   )
 }

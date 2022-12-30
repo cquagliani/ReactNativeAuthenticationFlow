@@ -3,6 +3,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Image } from 'react-native';
 import { auth } from '../../firebase'
+import CustomButton from '../components/CustomButton'
+import DisabledButton from '../components/DisabledButton'
 
 const Login = () => {
     // Initialize state for the username and password
@@ -92,24 +94,10 @@ const Login = () => {
 
             {/* Sign In buttons */}
             {email == '' || password == '' ? (
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        disabled
-                        onPress={handleLogin}
-                        style={styles.buttonDisable}
-                    >
-                        <Text style={styles.buttonText}>Sign In</Text>
-                    </TouchableOpacity>
-                </View>
+                <DisabledButton text={'Sign In'} />
+
             ) : (
-                <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={handleLogin}
-                    style={[styles.button, styles.button]}
-                >
-                    <Text style={styles.buttonText}>Sign In</Text>
-                </TouchableOpacity>
-            </View>
+                <CustomButton onPress={handleLogin} text={'Sign In'} />
             )}
 
             {/* Subtext under the Sign In button */}
@@ -173,35 +161,6 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 1,
         borderColor: '#5080BF',
-    },
-    buttonContainer: {
-        width: '80%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 35,
-    },
-    button: {
-        alignItems: 'center',
-        backgroundColor: '#5080BF',
-        marginBottom: 5,
-        marginHorizontal: 5,
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 16,
-    },
-    buttonDisable: {
-        alignItems: 'center',
-        backgroundColor: 'grey',
-        marginBottom: 5,
-        marginHorizontal: 5,
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
     },
     subtextContainer: {
         marginTop: 10,
