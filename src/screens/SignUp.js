@@ -155,8 +155,13 @@ const SignUp = () => {
                         autoCapitalize='none'
                         onChangeText={text => setPassword(text)}
                         style={styles.input}
-                        secureTextEntry
+                        secureTextEntry={seePassword}
                     />
+                    <TouchableOpacity
+                        style={styles.wrapperIcon}
+                        onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
+                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <TextInput
@@ -165,8 +170,13 @@ const SignUp = () => {
                         autoCapitalize='none'
                         onChangeText={text => setConfirmPassword(text)}
                         style={styles.input}
-                        secureTextEntry
+                        secureTextEntry={seeConfirmPassword}
                     />
+                    <TouchableOpacity
+                        style={styles.wrapperIcon}
+                        onPress={() => {confirmPassword == '' ? setSeePassword(seeConfirmPassword) : setSeeConfirmPassword(!seeConfirmPassword)}}>
+                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -234,6 +244,15 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 1,
         borderColor: '#5080BF',
+    },
+    wrapperIcon: {
+        position: 'absolute',
+        right: 0,
+        padding: 13,
+    },
+    icon: {
+        width: 22,
+        height: 22,
     },
     subtextContainer: {
         marginTop: 10,
