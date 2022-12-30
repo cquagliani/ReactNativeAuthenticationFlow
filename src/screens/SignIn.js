@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpaci
 import { auth } from '../../firebase'
 import CustomButton from '../components/CustomButton'
 import DisabledButton from '../components/DisabledButton'
+import PasswordVisibility from '../components/PasswordVisibility'
 
 const Login = () => {
     // Initialize state for the username and password
@@ -94,11 +95,7 @@ const Login = () => {
                         style={styles.input}
                         secureTextEntry={seePassword}
                     />
-                    <TouchableOpacity
-                        style={styles.wrapperIcon}
-                        onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
-                        <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
-                    </TouchableOpacity>
+                    <PasswordVisibility seeWhichPass={seePassword} onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}} />
                 </View>
             </View>
 
@@ -171,15 +168,6 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 1,
         borderColor: '#5080BF',
-    },
-    wrapperIcon: {
-        position: 'absolute',
-        right: 0,
-        padding: 13,
-    },
-    icon: {
-        width: 22,
-        height: 22,
     },
     subtextContainer: {
         marginTop: 10,
