@@ -57,14 +57,26 @@ const ForgotPassword = () => {
             </View>
 
             {/* Reset Password button */}
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={changePassword}
-                    style={styles.button}
-                >
-                    <Text style={styles.buttonText}>Reset Password</Text>
-                </TouchableOpacity>
-            </View>
+            {email == '' ? (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        disabled
+                        onPress={changePassword}
+                        style={styles.buttonDisable}
+                    >
+                        <Text style={styles.buttonText}>Reset Password</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        onPress={changePassword}
+                        style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>Reset Password</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
 
             {/* Subtext under the Reset button */}
             <View style={styles.subtextContainer}>
@@ -143,6 +155,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    buttonDisable: {
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        marginBottom: 5,
+        marginHorizontal: 5,
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
     },
     subtextContainer: {
         marginTop: 10,

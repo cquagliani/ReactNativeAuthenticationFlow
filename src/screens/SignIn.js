@@ -91,14 +91,26 @@ const Login = () => {
             </View>
 
             {/* Sign In buttons */}
-            <View style={styles.buttonContainer}>
+            {email == '' || password == '' ? (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        disabled
+                        onPress={handleLogin}
+                        style={styles.buttonDisable}
+                    >
+                        <Text style={styles.buttonText}>Sign In</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     onPress={handleLogin}
-                    style={styles.button}
+                    style={[styles.button, styles.button]}
                 >
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
+            )}
 
             {/* Subtext under the Sign In button */}
             <View style={styles.subtextContainer}>
@@ -181,6 +193,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    buttonDisable: {
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        marginBottom: 5,
+        marginHorizontal: 5,
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
     },
     subtextContainer: {
         marginTop: 10,

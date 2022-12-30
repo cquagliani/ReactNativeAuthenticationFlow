@@ -39,7 +39,7 @@ const SignUp = () => {
 
     const checkPasswordValidity = (value) => {
         const isNonWhiteSpace = /^\S*$/;
-        
+
         if (!isNonWhiteSpace.test(value)) {
             alert('Password must not contain Whitespaces.');
             return 1;
@@ -164,14 +164,22 @@ const SignUp = () => {
             </View>
 
             {/* Sign Up button */}
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={handleCreate}
-                    style={[styles.button, styles.button]}
-                >
-                    <Text style={styles.buttonText}>Sign Up</Text>
-                </TouchableOpacity>
-            </View>
+            {email == '' || password == '' || confirmPassword == '' || checkValidEmail == true ? (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        disabled
+                        style={styles.buttonDisable}
+                        onPress={handleCreate}>
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={[styles.button, styles.button]} onPress={handleCreate}>
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
 
             {/* Subtext under the Sign Up button */}
             <View style={styles.subtextContainer}>
@@ -250,6 +258,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    buttonDisable: {
+        alignItems: 'center',
+        backgroundColor: 'grey',
+        marginBottom: 5,
+        marginHorizontal: 5,
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
     },
     subtextContainer: {
         marginTop: 10,
