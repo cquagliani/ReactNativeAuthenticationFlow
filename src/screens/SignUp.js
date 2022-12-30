@@ -95,6 +95,11 @@ const SignUp = () => {
                         // Show a success message
                         alert('Success', 'Account created successfully');
                         console.log('Registered with ', user.email);
+
+                        // Clear fields on sign up screen
+                        setUsername({email: null});
+                        setPassword({password: null});
+                        setConfirmPassword({confirmPassword: null});
                     })
                     .catch(error => {
                         // Show an error message

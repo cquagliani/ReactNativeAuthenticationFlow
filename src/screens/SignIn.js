@@ -32,6 +32,10 @@ const Login = () => {
                 // Show a success message
                 alert('Success', 'Login successful');
                 console.log('Logged in with: ', user.email);
+
+                // Clear fields on sign in screen
+                setUsername({email: null});
+                setPassword({password: null})
             })
             .catch(error => {
                 // Show an error message

@@ -19,6 +19,9 @@ const ForgotPassword = () => {
         firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
                 alert("Check you email to reset your password");
+
+                // Clear fields on reset password screen
+                setUsername({email: null})
             })
             .catch(error => {
                 // Show an error message
