@@ -160,7 +160,7 @@ const SignUp = () => {
                     <TouchableOpacity
                         style={styles.wrapperIcon}
                         onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
-                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                        <Image source={seePassword ? require('../assets/Eye.png'): require('../assets/HideEye.png')} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
                 <View>
@@ -175,7 +175,7 @@ const SignUp = () => {
                     <TouchableOpacity
                         style={styles.wrapperIcon}
                         onPress={() => {confirmPassword == '' ? setSeePassword(seeConfirmPassword) : setSeeConfirmPassword(!seeConfirmPassword)}}>
-                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                        <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
             </View>

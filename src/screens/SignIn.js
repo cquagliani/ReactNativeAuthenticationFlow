@@ -6,9 +6,6 @@ import { auth } from '../../firebase'
 import CustomButton from '../components/CustomButton'
 import DisabledButton from '../components/DisabledButton'
 
-import { Eye } from '../assets/Eye.png'
-import { HideEye } from '../assets/HideEye.png'
-
 const Login = () => {
     // Initialize state for the username and password
     const [email, setUsername] = useState('');
@@ -100,7 +97,7 @@ const Login = () => {
                     <TouchableOpacity
                         style={styles.wrapperIcon}
                         onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
-                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                        <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
                     </TouchableOpacity>
                 </View>
             </View>
