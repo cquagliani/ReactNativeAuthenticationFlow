@@ -41,10 +41,12 @@ const ForgotPassword = () => {
                     source={require('../assets/icon.png')}
                 />
             </View>
+
             {/* Title */}
             <View style={styles.title}>
                 <Text style={styles.titleText}>Forgot Password?</Text>
             </View>
+            
             {/* Subtitle */}
             <View style={styles.subtitle}>
                 <Text style={styles.subtitleText}>Please enter your email</Text>

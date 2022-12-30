@@ -1,15 +1,19 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Image } from 'react-native'
 import { auth } from '../../firebase'
 import CustomButton from '../components/CustomButton'
 import DisabledButton from '../components/DisabledButton'
+
+import { Eye } from '../assets/Eye.png'
+import { HideEye } from '../assets/HideEye.png'
 
 const Login = () => {
     // Initialize state for the username and password
     const [email, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [seePassword, setSeePassword] = useState(true);
 
     const navigation = useNavigation();
 
@@ -34,8 +38,8 @@ const Login = () => {
                 console.log('Logged in with: ', user.email);
 
                 // Clear fields on sign in screen
-                setUsername({email: null});
-                setPassword({password: null})
+                setUsername({ email: null });
+                setPassword({ password: null })
             })
             .catch(error => {
                 // Show an error message
@@ -91,8 +95,13 @@ const Login = () => {
                         autoCapitalize='none'
                         onChangeText={text => setPassword(text)}
                         style={styles.input}
-                        secureTextEntry
+                        secureTextEntry={seePassword}
                     />
+                    <TouchableOpacity
+                        style={styles.wrapperIcon}
+                        onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}}>
+                        <Image source={seePassword ? require('../assets/HideEye.png') : require('../assets/Eye.png')} style={styles.icon} />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -165,6 +174,15 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 1,
         borderColor: '#5080BF',
+    },
+    wrapperIcon: {
+        position: 'absolute',
+        right: 0,
+        padding: 13,
+    },
+    icon: {
+        width: 22,
+        height: 22,
     },
     subtextContainer: {
         marginTop: 10,
