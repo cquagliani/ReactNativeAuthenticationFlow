@@ -124,18 +124,13 @@ const SignUp = () => {
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
-                    source={require('../assets/icon.png')}
+                    source={require('../assets/StudentThinker.png')}
                 />
             </View>
 
             {/* Title */}
             <View style={styles.title}>
-                <Text style={styles.titleText}>Welcome to Pop Jot!</Text>
-            </View>
-
-            {/* Subtitle */}
-            <View style={styles.subtitle}>
-                <Text style={styles.subtitleText}>Please enter your information to sign up</Text>
+                <Text style={styles.titleText}>Sign Up</Text>
             </View>
 
             {/* Email and Password buttons */}
@@ -159,11 +154,6 @@ const SignUp = () => {
                         secureTextEntry={seePassword}
                     />
                     <PasswordVisibility seeWhichPass={seePassword} onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}} />
-                    {/* <TouchableOpacity
-                        style={styles.wrapperIcon}
-                        onPress={() => { password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword) }}>
-                        <Image source={seePassword ? require('../assets/Eye.png') : require('../assets/HideEye.png')} style={styles.icon} />
-                    </TouchableOpacity> */}
                 </View>
                 <View>
                     <TextInput
@@ -206,23 +196,25 @@ export default SignUp
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 10,
+        marginVertical: 60,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 80,
-        marginBottom: 90,
     },
     logoContainer: {
-        flex: 1,
         justifyContent: 'flex-end'
     },
     logo: {
         resizeMode: "contain",
-        marginTop: 0,
-        maxHeight: 200,
-        maxWidth: 200,
+        marginTop: -30,
+        marginBottom: 30,
+        maxHeight: 275,
+        maxWidth: 275,
     },
     title: {
-        marginBottom: 10,
+        marginLeft: 40,
+        alignSelf: 'stretch',
+        marginBottom: 30,
     },
     titleText: {
         color: '#000000',

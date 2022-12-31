@@ -61,18 +61,13 @@ const Login = () => {
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
-                    source={require('../assets/icon.png')}
+                    source={require('../assets/StudentNotebook.png')}
                 />
             </View>
 
             {/* Title */}
             <View style={styles.title}>
-                <Text style={styles.titleText}>Welcome to Pop Jot!</Text>
-            </View>
-
-            {/* Subtitle */}
-            <View style={styles.subtitle}>
-                <Text style={styles.subtitleText}>Please enter your login credentials</Text>
+                <Text style={styles.titleText}>Sign In</Text>
             </View>
 
             {/* Email and Password buttons */}
@@ -95,7 +90,11 @@ const Login = () => {
                         style={styles.input}
                         secureTextEntry={seePassword}
                     />
-                    <PasswordVisibility seeWhichPass={seePassword} onPress={() => {password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword)}} />
+                    <PasswordVisibility seeWhichPass={seePassword} onPress={() => { password == '' ? setSeePassword(seePassword) : setSeePassword(!seePassword) }} />
+                </View>
+                <View>
+                    <Text style={styles.subtextForgotPassword}>
+                        <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navForgotPassword}>Forgot password?</Text></Text>
                 </View>
             </View>
 
@@ -112,10 +111,6 @@ const Login = () => {
                 <Text style={styles.subtext}>Don't have an account?
                     <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navSignUp}> Sign Up</Text></Text>
             </View>
-            <View style={styles.subtextContainer}>
-                <Text style={styles.subtext}>
-                    <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navForgotPassword}>Forgot password?</Text></Text>
-            </View>
         </KeyboardAvoidingView>
     )
 }
@@ -125,23 +120,25 @@ export default Login
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 10,
+        marginVertical: 60,
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginTop: 10,
-        marginBottom: 90,
+        justifyContent: 'center',
     },
     logoContainer: {
-        flex: 1,
         justifyContent: 'flex-end'
     },
     logo: {
         resizeMode: "contain",
-        marginTop: 0,
-        maxHeight: 200,
-        maxWidth: 200,
+        marginTop: -30,
+        marginBottom: 30,
+        maxHeight: 275,
+        maxWidth: 275,
     },
     title: {
-        marginBottom: 10,
+        marginLeft: 40,
+        alignSelf: 'stretch',
+        marginBottom: 30,
     },
     titleText: {
         color: '#000000',
@@ -174,5 +171,18 @@ const styles = StyleSheet.create({
     },
     subtext: {
         color: '#7F7F80',
+    },
+    subtextForgotPassword: {
+        alignSelf: 'flex-end',
+        marginTop: 10,
+    },
+    subtextDisclaimer: {
+        color: '#7F7F80',
+        fontSize: 11,
+    },
+    textFailed: {
+        alignSelf: 'flex-start',
+        color: 'red',
+        fontSize: 12
     },
 })
