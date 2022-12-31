@@ -38,18 +38,19 @@ const ForgotPassword = () => {
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
-                    source={require('../assets/icon.png')}
+                    source={require('../assets/ForgotPassword.png')}
                 />
             </View>
 
             {/* Title */}
             <View style={styles.title}>
-                <Text style={styles.titleText}>Forgot Password?</Text>
+                <Text style={styles.titleText}>Forgot </Text>
+                <Text style={styles.titleText}>Password?</Text>
             </View>
-            
-            {/* Subtitle */}
+
+            {/* Subtitle text */}
             <View style={styles.subtitle}>
-                <Text style={styles.subtitleText}>Please enter your email</Text>
+                <Text style={styles.subtitleText}>Don't worry! It happens. Please enter the email associated with your account.</Text>
             </View>
 
             {/* Email input */}
@@ -84,22 +85,24 @@ export default ForgotPassword
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 10,
+        marginVertical: 60,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 80,
-        marginBottom: 90,
     },
     logoContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     logo: {
         resizeMode: "contain",
-        marginTop: 0,
-        maxHeight: 200,
-        maxWidth: 200,
+        marginTop: -30,
+        marginBottom: 30,
+        maxHeight: 275,
+        maxWidth: 275,
     },
     title: {
+        marginLeft: 40,
+        alignSelf: 'stretch',
         marginBottom: 10,
     },
     titleText: {
@@ -108,12 +111,13 @@ const styles = StyleSheet.create({
         fontSize: 32,
     },
     subtitle: {
+        marginLeft: 40,
+        alignSelf: 'stretch',
         marginBottom: 25,
     },
     subtitleText: {
         color: '#7F7F80',
-        fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 14,
     },
     inputContainer: {
         width: '80%',
@@ -133,5 +137,18 @@ const styles = StyleSheet.create({
     },
     subtext: {
         color: '#7F7F80',
+    },
+    subtextForgotPassword: {
+        alignSelf: 'flex-end',
+        marginTop: 10,
+    },
+    subtextDisclaimer: {
+        color: '#7F7F80',
+        fontSize: 11,
+    },
+    textFailed: {
+        alignSelf: 'flex-start',
+        color: 'red',
+        fontSize: 12
     },
 })
