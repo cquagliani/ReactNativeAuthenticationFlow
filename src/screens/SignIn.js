@@ -45,14 +45,6 @@ const Login = () => {
             });
     };
 
-    const navSignUp = () => {
-        navigation.navigate('Sign Up');
-    }
-
-    const navForgotPassword = () => {
-        navigation.navigate('Reset Password')
-    }
-
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -94,7 +86,7 @@ const Login = () => {
                 </View>
                 <View>
                     <Text style={styles.subtextForgotPassword}>
-                        <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navForgotPassword}>Forgot password?</Text></Text>
+                        <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navigation.navigate('Reset Password')}>Forgot password?</Text></Text>
                 </View>
             </View>
 
@@ -109,7 +101,7 @@ const Login = () => {
             {/* Subtext under the Sign In button */}
             <View style={styles.subtextContainer}>
                 <Text style={styles.subtext}>Don't have an account?
-                    <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navSignUp}> Sign Up</Text></Text>
+                    <Text style={{ fontWeight: 'bold', color: '#5080BF' }} onPress={navigation.navigate('Sign Up')}> Sign Up</Text></Text>
             </View>
         </KeyboardAvoidingView>
     )
